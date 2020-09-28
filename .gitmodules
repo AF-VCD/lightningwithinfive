@@ -10,6 +10,6 @@
 	url = git@github.com:AF-VCD/BulletTime.git
 	branch = gh-pages
 [submodule "content/pdf-bullets"]
-	path = content/pdf-bullets
+	path = content/AFBS/
 	url = git@github.com:AF-VCD/pdf-bullets.git
 	branch = gh-pages
