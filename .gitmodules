@@ -13,3 +13,11 @@
 	path = content/AFBS/
 	url = git@github.com:AF-VCD/pdf-bullets.git
 	branch = gh-pages
+[submodule "AFBS"]
+	path = content/pdf-bullets
+	url = git@github.com:AF-VCD/pdf-bullets.git
+	branch = gh-pages
+[submodule "content/AFBS"]
+	path = content/AFBS
+	url = git@github.com:AF-VCD/pdf-bullets.git
+	branch = gh-pages
