@@ -1,17 +1,9 @@
 [submodule "themes/ananke"]
 	path = themes/ananke
 	url = https://github.com/budparr/gohugo-theme-ananke.git
-[submodule "content/--force"]
-	path = content/--force
-	url = git@github.com:AF-VCD/BulletTime.git
-	branch = gh-pages
 [submodule "content/BulletTime"]
 	path = content/BulletTime
 	url = git@github.com:AF-VCD/BulletTime.git
-	branch = gh-pages
-[submodule "content/pdf-bullets"]
-	path = content/AFBS/
-	url = git@github.com:AF-VCD/pdf-bullets.git
 	branch = gh-pages
 [submodule "content/AFBS"]
 	path = content/AFBS
