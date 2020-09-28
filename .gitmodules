@@ -5,3 +5,11 @@
 	path = content/--force
 	url = git@github.com:AF-VCD/BulletTime.git
 	branch = gh-pages
+[submodule "content/BulletTime"]
+	path = content/BulletTime
+	url = git@github.com:AF-VCD/BulletTime.git
+	branch = gh-pages
+[submodule "content/pdf-bullets"]
+	path = content/pdf-bullets
+	url = git@github.com:AF-VCD/pdf-bullets.git
+	branch = gh-pages

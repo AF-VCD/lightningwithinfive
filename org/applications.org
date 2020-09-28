@@ -1,0 +1,36 @@
+#+startup: content
+#+author: Seeley Pentecost
+
+#+hugo_base_dir: ..
+#+hugo_front_matter_key_replace: description>summary
+
+* Applications
+:PROPERTIES:
+:EXPORT_HUGO_WEIGHT: auto
+:END:
+
+** DONE Bullet Time                               :javascript:web:BulletTime:
+   CLOSED: [2020-09-26 Sat 12:36]
+:PROPERTIES:
+:EXPORT_FILE_NAME: index.md
+:EXPORT_HUGO_SECTION: post/bullet-time
+:END:
+
+Another bullet writing tool from u/dudeguy1349.
+
+#+hugo: more
+
+[[/BulletTime][BulletTime]]
+
+** DONE AF Bullet Shaping and Iteration Tool      :javascript:web:AFBullShit:
+   CLOSED: [2020-09-26 Sat 12:36]
+:PROPERTIES:
+:EXPORT_FILE_NAME: index.md
+:EXPORT_HUGO_SECTION: post/pdf-bullets
+:END:
+
+The original bullet writing app from u/ckhordiasma.
+
+#+hugo: more
+
+[[/AFBS][AF Bullet Shaping and Iteration Tool]]
