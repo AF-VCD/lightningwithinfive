@@ -34,3 +34,16 @@ The original bullet writing app from u/ckhordiasma.
 #+hugo: more
 
 [[/AFBS][AF Bullet Shaping and Iteration Tool]]
+
+** DONE Incoherent Bullet Synthesizer                    :javascript:web:IBS:
+   CLOSED: [2020-11-03 Tue 20:38]
+:PROPERTIES:
+:EXPORT_FILE_NAME: index.md
+:EXPORT_HUGO_SECTION: post/bullet-synth
+:END:
+
+A new bullet writing app from u/ckhordiasma that uses machine learning models to write fake bullets.
+
+#+hugo: more
+
+[[/bullet-synth][Incoherent Bullet Synthesizer]]
