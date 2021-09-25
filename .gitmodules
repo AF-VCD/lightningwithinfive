@@ -1,3 +1,10 @@
 [submodule "themes/toha"]
 	path = themes/toha
 	url = https://github.com/hugo-toha/toha.git
+[submodule "content/--branch"]
+	path = content/--branch
+	url = https://github.com/AF-VCD/pdf-bullets.git
+[submodule "content/AFBS"]
+	path = content/AFBS
+	url = https://github.com/AF-VCD/pdf-bullets.git
+	branch = gh-pages
