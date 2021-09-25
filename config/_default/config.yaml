@@ -1,4 +1,4 @@
-baseURL: http://lightningwithinfive.com
+baseURL: http://www.lightningwithinfive.com
 
 languageCode: en-us
 title: "Lightning Within Five"
@@ -31,12 +31,22 @@ enableEmoji: true
 
 # Site parameters
 params:
+  # Background image
+  background: /images/lightning.png
+  
+  #Footer configuration
+  footer:
+    contactMe:
+      enable: false
+    navigation:
+      enable: false
+
   # GitHub repo URL and branch of your site
   gitRepo: https://github.com/hugo-toha/hugo-toha.github.io
   gitBranch: main
 
   # specify whether you want to write some blog posts or not
-  enableBlogPost: true
+  enableBlogPost: false
 
   # specify whether you want to show Table of Contents in reading page
   enableTOC: true
@@ -46,7 +56,7 @@ params:
   # You can also hide it from the footer.
   newsletter:
     # specify whether you want to display the newsletter form 
-    enable: true
+    enable: false
     # specify which newsletter provider you want to use
     provider: mailchimp
     # specify the target URL for the subscription form
