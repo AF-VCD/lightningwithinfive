@@ -40,7 +40,7 @@ projects:
 #   logo: /images/sections/applications/bullet-buddy.png
 #   author: Nicholas Schweikart
 #   repo: https://github.com/AF-Tools/bullet-buddy # If your project is a public repo on GitHub, then provide this link. it will show star count.
-#   url: "./AFBS"
+#   url: "./bullet-buddy"
 #   summary: Full-featured bullet writing tool with built in thesaurus, customizable, acronym replacement, automated spacing and more.
 #   tags: ["Bullet Writing", "In-Browser"]
 

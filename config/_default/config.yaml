@@ -4,6 +4,9 @@ languageCode: en-us
 title: "Lightning Within Five"
 theme: "toha"
 
+ignoreFiles: 
+  - bullet-synth\README.md
+
 # Manage languages
 # For any more details, you can check the official documentation: https://gohugo.io/content-management/multilingual/
 languages:
