@@ -8,3 +8,7 @@
 	path = content/AFBS
 	url = https://github.com/AF-VCD/pdf-bullets.git
 	branch = gh-pages
+[submodule "content/BulletTime"]
+	path = content/BulletTime
+	url = https://github.com/AF-VCD/BulletTime.git
+	branch = gh-pages

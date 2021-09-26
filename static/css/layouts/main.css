@@ -125,6 +125,11 @@ img.right {
   overflow: hidden;
 }
 
+.card-img-preview {
+  border: 1px solid #dfdfdf;
+  margin-bottom: 10px;
+}
+
 .card-img-sm {
   width: 32px;
   height: 32px;
