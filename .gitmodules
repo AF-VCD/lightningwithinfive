@@ -12,3 +12,15 @@
 	path = content/BulletTime
 	url = https://github.com/AF-VCD/BulletTime.git
 	branch = gh-pages
+[submodule "content/bullet-synth"]
+	path = content/bullet-synth
+	url = https://github.com/AF-VCD/bullet-synth.git
+[submodule "content/BulletPress"]
+	path = content/BulletPress
+	url = https://github.com/cmdr0/bulletpress
+[submodule "content/AFFitnessCalc"]
+	path = content/AFFitnessCalc
+	url = https://github.com/AndrewKemendo/airforcefitnesscalculator
+[submodule "content/bullet-buddy"]
+	path = content/bullet-buddy
+	url = https://github.com/AF-Tools/bullet-buddy

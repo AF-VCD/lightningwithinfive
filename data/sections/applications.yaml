@@ -36,10 +36,34 @@ projects:
   summary: Another bullet writing tool with built in thesaurus, acronym replacement, automated spacing and more.
   tags: ["Bullet Writing", "In-Browser"]
 
-  - name: Incoherent Bullet Synthesizer
+# - name: Bullet Buddy
+#   logo: /images/sections/applications/bullet-buddy.png
+#   author: Nicholas Schweikart
+#   repo: https://github.com/AF-Tools/bullet-buddy # If your project is a public repo on GitHub, then provide this link. it will show star count.
+#   url: "./AFBS"
+#   summary: Full-featured bullet writing tool with built in thesaurus, customizable, acronym replacement, automated spacing and more.
+#   tags: ["Bullet Writing", "In-Browser"]
+
+- name: Incoherent Bullet Synthesizer
   logo: /images/sections/applications/bullet-synth.png
   author: u/ckhordiasma
   repo: https://github.com/AF-VCD/bullet-synth # If your project is a public repo on GitHub, then provide this link. it will show star count.
   url: "./bullet-synth"
   summary: A bullet generation tool that uses a machine learning model trained on public bullets to make bullet suggestions to you.
   tags: ["Bullet Writing", "In-Browser"]
+
+- name: Bullet Press
+  logo: /images/sections/applications/BulletPress.png
+  author: github/cmdr0
+  repo: https://github.com/cmdr0/bulletpress # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  url: "./BulletPress"
+  summary: A minimalist bullet writing tool for optimizing the wording of a single bullet.
+  tags: ["Bullet Writing", "In-Browser"]
+
+- name: Air Force Fitness Calculator
+  logo: /images/sections/applications/airforcefitnesscalculator.png
+  author: github/AndrewKemendo
+  repo: https://github.com/AndrewKemendo/airforcefitnesscalculator # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  url: "./AFFitnessCalc"
+  summary: An easy to use calculator for determining physical fitness test scores.
+  tags: ["Other", "In-Browser"]
