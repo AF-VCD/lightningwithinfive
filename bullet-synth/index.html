@@ -1,114 +1,234 @@
-<!doctype html><html>
+<html>
 <head>
-<title>Bullet-synths</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta http-equiv=x-ua-compatible content="ie=edge">
-<link rel=stylesheet href=/lightningwithinfive/css/bootstrap.min.css>
-<link rel=stylesheet href=/lightningwithinfive/css/layouts/main.css>
-<link rel=stylesheet href=/lightningwithinfive/css/navigators/navbar.css>
-<link rel=stylesheet href=/lightningwithinfive/css/plyr.css>
-<link rel=stylesheet href=/lightningwithinfive/css/flag-icon.min.css>
-<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css>
-<meta property="og:title" content="Bullet-synths">
-<meta property="og:description" content>
-<meta property="og:type" content="website">
-<meta property="og:url" content="http://af-vcd.github.io/lightningwithinfive/bullet-synth/">
-<link rel=stylesheet href=/lightningwithinfive/css/layouts/list.css>
-<link rel=stylesheet href=/lightningwithinfive/css/navigators/sidebar.css>
-<link rel=stylesheet href=/lightningwithinfive/css/style.css>
+    <!-- <script src="./tf.min.js"></script>  --> 
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script> 
+    <link rel="stylesheet" href="bulma.min.css">
+<script type='text/javascript'>
+
+let model;
+const char2idx = {"\\t": 0, "\\n": 1, " ": 2, "!": 3, "\\": 4, "#": 5, "$": 6, "%": 7, "&": 8, "\'": 9, "(": 10, ")": 11, "*": 12, "+": 13, ",": 14, "-": 15, ".": 16, "/": 17, "0": 18, "1": 19, "2": 20, "3": 21, "4": 22, "5": 23, "6": 24, "7": 25, "8": 26, "9": 27, ":": 28, ";": 29, "<": 30, "=": 31, ">": 32, "?": 33, "@": 34, "A": 35, "B": 36, "C": 37, "D": 38, "E": 39, "F": 40, "G": 41, "H": 42, "I": 43, "J": 44, "K": 45, "L": 46, "M": 47, "N": 48, "O": 49, "P": 50, "Q": 51, "R": 52, "S": 53, "T": 54, "U": 55, "V": 56, "W": 57, "X": 58, "Y": 59, "Z": 60, "[": 61, "\\\\": 62, "]": 63, "^": 64, "_": 65, "`": 66, "a": 67, "b": 68, "c": 69, "d": 70, "e": 71, "f": 72, "g": 73, "h": 74, "i": 75, "j": 76, "k": 77, "l": 78, "m": 79, "n": 80, "o": 81, "p": 82, "q": 83, "r": 84, "s": 85, "t": 86, "u": 87, "v": 88, "w": 89, "x": 90, "y": 91, "z": 92, "{": 93, "}": 94, "~": 95, "\\u00b0": 96, "\\u00b2": 97, "\\u00b3": 98, "\\u00e9": 99, "\\u00f3": 100, "\\u2006": 101, "\\u2009": 102, "\\u2013": 103, "\\u2014": 104, "\\u2018": 105, "\\u2019": 106, "\\u201c": 107, "\\u201d": 108, "\\u2022": 109, "\\u2026": 110, "\\udbc2\\udfd7": 111};
+const idx2char = ["\t", "\n", " ", "!", "\\", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",", "-", ".", "/", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ":", ";", "<", "=", ">", "?", "@", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "[", "\\\\", "]", "^", "_", "`", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "{", "}", "~", "\u00b0", "\u00b2", "\u00b3", "\u00e9", "\u00f3", "\u2006", "\u2009", "\u2013", "\u2014", "\u2018", "\u2019", "\u201c", "\u201d", "\u2022", "\u2026", "\udbc2\udfd7"];
+const FREE_RUN = 0;
+const SAME_SEED = 1;
+
+
+async function loadModel(filename){
+    console.log('loading model..')
+    model =  tf.loadLayersModel(filename);
+    console.log('model loaded');
+    return model;
+}
+
+function strToCharArray(str){
+    return str.split('').map(function(c){return char2idx[c];});
+}
+
+async function makePrediction(model, input, temperature){
+    
+    let inputEval;
+    if(typeof input == 'string'){
+        // Converting our start string to numbers (vectorizing)
+        const inputEvalSingular = tf.tensor1d(strToCharArray(input));
+        // adds a dimension of length 1 on the 0th axis, representing the batch size of 1
+        inputEval = tf.expandDims(inputEvalSingular, 0);
+        
+    }else{
+        inputEval = input;
+        //console.log('with state: ')
+        //console.log(input);
+        //console.log('without state: ');
+        //console.log(tf.expandDims(strToCharArray( (await predToChar(input)) )));
+    }
+    
+    const predictions = model.predict(inputEval);
+
+    // removes the batch dimension 
+    const predictionsSingular = tf.squeeze(predictions, 0).div(temperature);
+
+    //predictions are a multinomial and include state information...?
+    const prediction = tf.multinomial(predictionsSingular, 1).slice(0,1);
+    
+
+    return prediction;
+}
+
+async function predToChar(prediction){
+    const predictedArray = (await prediction.array());
+    
+    // line that helps me debug
+    //let text = '';predictedArray.map((subarray)=>{text += idx2char[subarray[0]];});console.log(text);
+        
+    const predictedIdInt = predictedArray[0][0];
+    const character = idx2char[predictedIdInt];
+    return character;
+}
+
+async function genBullets(params){
+    const seed = params.seed;
+    const lines = params.lines;
+    const updateFcn = params.updater;
+    const mode = params.mode;
+    const temperature = params.temperature;
+    const modelNum = params.modelNum+1;
+
+    const model = await loadModel('./models/run-' + modelNum + '/tfjs/model.json');
+    let allLines = '';
+    //const primer = '- Spearheaded groundbreaking evaluation tool; optimized 500K+ EPR/OPR bullets--achieved $250M in time savings across AF' + '\n';
+    //const primer = '';
+    model.resetStates();
+    let modelInput;
+    for(let i = 0; i < lines; i++){
+        
+        
+        let textGenerated = '';
+        if(i === 0) {
+            modelInput = seed;
+            allLines += seed;
+        }else{
+            switch(mode){
+                case SAME_SEED:
+                    model.resetStates();
+                    modelInput = allLines + seed;
+                    allLines += seed;
+                    break;
+            }
+        }
+        
+        while(true){
+
+            const prediction = await makePrediction(model, modelInput, temperature);
+            const nextChar = await predToChar(prediction);
+            textGenerated += nextChar;
+            modelInput = prediction;
+            if(nextChar === "\n"){
+                break;
+            }
+        }
+        allLines += textGenerated; 
+        //setTimeout( function () {updateFcn(allLines)}, 0);
+        updateFcn(allLines);
+        console.log('finished with line ' + (i+1) );
+    }
+    
+    
+    //return (startStr + txtGenerated)
+}
+//main('- Led ')
+//const prediction = model.predict(['a']);
+function runModel(e){
+    e.preventDefault();
+    const seed = document.getElementById('seed').value;
+    const numGen = parseInt(document.getElementById('numGen').value);
+    const mode = document.getElementById('modeSelect').selectedIndex;
+    const modelNum = document.getElementById('modelSelect').selectedIndex;
+    const temp = parseInt(document.getElementById('temp').value) / 100;
+    document.getElementById('loadingMsg').innerText = 'loading... please wait';
+    document.getElementById('generatedBullets').className = 'has-text-grey-light' ;
+    const params = {
+        seed: seed,
+        lines: numGen,
+        updater: updatePara,
+        mode: mode,
+        temperature: temp,
+        modelNum: modelNum
+    }
+
+    genBullets(params).then(function(){
+        document.getElementById('loadingMsg').innerText = 'Complete!';
+        document.getElementById('generatedBullets').className = '' ;
+    });
+}
+function updatePara(text){
+    document.getElementById('generatedBullets').className = '' ;
+    document.getElementById('generatedBullets').innerText = text;
+}
+window.onload=function(){
+    document.getElementById("goBtn").onclick = runModel;
+}
+
+</script>
 </head>
-<body data-spy=scroll data-target=#TableOfContents data-offset=80>
-<div class="container-fluid bg-dimmed wrapper">
-<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
-<div class=container>
-<button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
-<span class=navbar-toggler-icon></span>
-</button>
-<a class=navbar-brand href=/lightningwithinfive>
-Lightning Within Five</a>
-<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse lang-selector" id=top-nav-items>
-<ul class="navbar-nav ml-auto">
-</ul>
-</div>
-</div>
-</nav>
-<section class=sidebar-section id=sidebar-section>
-<div class=sidebar-holder>
-<div class=sidebar id=sidebar>
-<form class=mx-auto method=get action=/lightningwithinfive/search>
-<input type=text name=keyword placeholder=Search data-search id=search-box>
-</form>
-<div class=sidebar-tree>
-<ul class=tree id=tree>
-<li id=list-heading><a href=/lightningwithinfive/bullet-synth data-filter=all></a></li>
-<div class=subtree>
-</div>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section class=content-section id=content-section>
-<div class="content container-fluid" id=content>
-<div class="container-fluid post-card-holder" id=post-card-holder>
-<div class=post-card>
-<a href=/lightningwithinfive/lightningwithinfive/bullet-synth/readme/ class=post-card-link>
-<div class=card>
-<div class=card-head>
-<img class=card-img-top src=/lightningwithinfive/images/default-hero.jpg alt="Hero Image">
-</div>
-<div class=card-body>
-<h5 class=card-title></h5>
-<p class="card-text post-summary">Incoherent Bullet Synthesizer (IBS) The goal of this project is to produce &ldquo;real&rdquo;-sounding Air Force performance bullet statements using a machine learning model.
-This is an interesting problem for a computer to solve, due to the fact that bullet &ldquo;best practices&rdquo; are almost completely arbitrary, largely depending on the whims of supervisors, superintendents, first shirts, and commanders. This project isn&rsquo;t intended to be a serious tool for people to write their own bullets.</p>
-</div>
-<div class=card-footer>
-<span class=float-left>January 1, 0001</span>
-<a href=/lightningwithinfive/lightningwithinfive/bullet-synth/readme/ class="float-right btn btn-outline-info btn-sm">Read</a>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class=paginator>
-</div>
-</div>
-</section>
-</div>
-<footer class="container-fluid text-center align-content-center footer pb-2">
-<div class="container pt-5">
-<div class="row text-left">
-</div>
-</div>
-<hr>
-<div class=container>
-<div class="row text-left">
-<div class=col-md-4>
-<a id=theme href=https://github.com/hossainemruz/toha target=_blank rel=noopener>
-<img src=/lightningwithinfive/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png alt="Toha Theme Logo">
-Toha
-</a>
-</div>
-<div class="col-md-4 text-center">© 2021 Copyright.</div>
-<div class="col-md-4 text-right">
-<a id=hugo href=https://gohugo.io/ target=_blank rel=noopener>Powered by
-<img src=/lightningwithinfive/images/hugo-logo.svg alt="Hugo Logo" height=18>
-</a>
-</div>
-</div>
-</div>
-</footer>
-<script type=text/javascript src=/lightningwithinfive/js/jquery-3.4.1.min.js></script>
-<script type=text/javascript src=/lightningwithinfive/js/popper.min.js></script>
-<script type=text/javascript src=/lightningwithinfive/js/bootstrap.min.js></script>
-<script type=text/javascript src=/lightningwithinfive/js/navbar.js></script>
-<script type=text/javascript src=/lightningwithinfive/js/plyr.js></script>
-<script type=text/javascript src=/lightningwithinfive/js/main.js></script>
-<script src=/lightningwithinfive/js/list.js></script>
+<body>
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class='title'>Incoherent Bullet Synthesizer</h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <div>
+                    <div class="columns">
+                        <div class="column is-2 field">
+                            <label class="label">Lines to generate: </label>
+                            <div class="control">
+                                <input class="input" id='numGen' type="number" value=5 max=10> 
+                            </div>
+                            <p class="help">Enable hardware acceleration on browser for faster results</p>
+                        </div>
+                        <div class="column is-2 field">
+                            <label class="label">Spiciness </label>
+                            <div class="control">
+                                <input class="input" id='temp' type="number" value=50 max=100 min=1> 
+                            </div>
+                            <p class='help'>Bullet unpredictability (1-100)</p>
+                        </div>
+                        <div class="column is-2 field">
+                            <label class="label">Model Selection</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="modelSelect">
+                                    <option>Model 1</option>
+                                    <option>Model 2</option>
+                                    <option>Model 3</option>
+                                    <option>Model 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-3 field">
+                            <label class="label">Output Type</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="modeSelect">
+                                    <option>Free Run</option>
+                                    <option>Same Beginning</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <p class='help'>Free Run: primer initializes output</p>
+                            <p class='help'>Same Beginning: primer is treated as prefix</p>
+                        </div>
+
+
+                    </div>
+                    <div class="field">
+                        <label class="label">Input primer text here: </label>
+                        <div class="control">
+                            <textarea class="textarea is-primary" id='seed'>- Led </textarea>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button" id='goBtn'>Generate!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <p id="loadingMsg"></p>
+                <p id='generatedBullets'></p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>Maintained by Christopher Kodama. 
+            Built using Tensorflow, formatted using Bulma. View open source code <a href="https://github.com/AF-VCD/bullet-synth">here</a>.</p>
+        </div>
+    </footer>
+    
 </body>
 </html>
