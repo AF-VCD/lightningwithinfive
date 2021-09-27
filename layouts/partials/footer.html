@@ -4,7 +4,7 @@
 {{ $contactMeEnabled   := site.Params.footer.contactMe.enable   | default true }}
 {{ $newsletterEnabled  := site.Params.footer.newsletter.enable  | default true }}
 {{ $credentialsEnabled := site.Params.footer.credentials.enable | default true }}
-{{ $disclaimerEnabled  := site.Params.footer.disclaimer.enable  | default false }}
+{{ $disclaimerEnabled  := site.Params.footer.disclaimer.enable  | default true }}
 
 {{/*  Keep backward compatibility for the newsletter function */}}
 {{ if site.Params.newsletter }}
@@ -91,6 +91,10 @@
           </ul>
         </div>
         {{ end }}
+
+        <div class="col-md-4 col-sm-12 text-center">
+        <h5><span>Software solutions to Air Force problems.</span></h5>
+        </div>
         <!-------------- Newsletter --------------->
         {{ if $newsletterEnabled }}
           {{ $provider := site.Params.footer.newsletter.provider }}

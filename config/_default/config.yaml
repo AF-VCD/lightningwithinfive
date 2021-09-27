@@ -5,7 +5,7 @@ title: "Lightning Within Five"
 theme: "toha"
 
 ignoreFiles: 
-  - bullet-synth\README.md
+  - README.md
 
 # Manage languages
 # For any more details, you can check the official documentation: https://gohugo.io/content-management/multilingual/
@@ -40,9 +40,11 @@ params:
   #Footer configuration
   footer:
     contactMe:
-      enable: false
+      enable: true
     navigation:
       enable: false
+    disclaimer:
+      enable: true
 
   # GitHub repo URL and branch of your site
   gitRepo: https://github.com/hugo-toha/hugo-toha.github.io
