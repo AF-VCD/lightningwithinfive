@@ -15,10 +15,15 @@ jobs:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - name: Remove READMEs
+      - name: Remove bullet-synth README
         uses: JesseTG/rm@v1.0.2
         with:
           path: /content/bullet-synth/README.md
+        
+    - name: Remove bullet-buddy README
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: /content/bullet-buddy/README.md
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
