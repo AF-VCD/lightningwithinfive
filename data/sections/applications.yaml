@@ -77,7 +77,7 @@ projects:
   tags: ["Other", "In-Browser"]
 
 - name: AF Links
-  logo: /images/sections/applications/aflink.png
+  logo: /images/sections/applications/aflinks.png
   author: github/dadatuputi
   repo: https://github.com/dadatuputi/aflinks
   url: "https://aflink.us/"
