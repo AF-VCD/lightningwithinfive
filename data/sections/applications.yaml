@@ -31,7 +31,7 @@ projects:
 - name: Bullet Time
   logo: /images/sections/applications/BulletTime.png
   author: u/dudeguy1993
-  repo: https://github.com/AF-VCD/BulletTime # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  repo: https://github.com/AF-VCD/BulletTime
   url: "./BulletTime"
   summary: Another bullet writing tool with built in thesaurus, acronym replacement, automated spacing and more.
   tags: ["Bullet Writing", "In-Browser"]
@@ -39,7 +39,7 @@ projects:
 - name: Bullet Buddy
   logo: /images/sections/applications/bullet-buddy.png
   author: Nicholas Schweikart
-  repo: https://github.com/AF-Tools/bullet-buddy # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  repo: https://github.com/AF-Tools/bullet-buddy
   url: "./bullet-buddy"
   summary: Full-featured bullet writing tool with built in thesaurus, customizable, acronym replacement, automated spacing and more.
   tags: ["Bullet Writing", "In-Browser"]
@@ -47,7 +47,7 @@ projects:
 - name: Bullet Blender
   logo: /images/sections/applications/Bullet-Blender.png
   author: github/Jukari2003
-  repo: https://github.com/Jukari2003/Bullet-Blender # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  repo: https://github.com/Jukari2003/Bullet-Blender
   url: "https://github.com/Jukari2003/Bullet-Blender/archive/refs/heads/main.zip"
   summary: A feature rich powershell based bullet writing tool. You'll need the ability execute powershell in order to use this tool.
   tags: ["Bullet Writing", "Download Required"]
@@ -55,7 +55,7 @@ projects:
 - name: Incoherent Bullet Synthesizer
   logo: /images/sections/applications/bullet-synth.png
   author: u/ckhordiasma
-  repo: https://github.com/AF-VCD/bullet-synth # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  repo: https://github.com/AF-VCD/bullet-synth
   url: "./bullet-synth"
   summary: A bullet generation tool that uses a machine learning model trained on public bullets to make bullet suggestions to you.
   tags: ["Bullet Writing", "In-Browser"]
@@ -63,7 +63,7 @@ projects:
 - name: Bullet Press
   logo: /images/sections/applications/BulletPress.png
   author: github/cmdr0
-  repo: https://github.com/cmdr0/bulletpress # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  repo: https://github.com/cmdr0/bulletpress
   url: "./BulletPress"
   summary: A minimalist bullet writing tool for optimizing the wording of a single bullet.
   tags: ["Bullet Writing", "In-Browser"]
@@ -71,7 +71,22 @@ projects:
 - name: Air Force Fitness Calculator
   logo: /images/sections/applications/airforcefitnesscalculator.png
   author: github/AndrewKemendo
-  repo: https://github.com/AndrewKemendo/airforcefitnesscalculator # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  repo: https://github.com/AndrewKemendo/airforcefitnesscalculator
   url: "./AFFitnessCalc"
   summary: An easy to use calculator for determining physical fitness test scores.
   tags: ["Other", "In-Browser"]
+
+- name: AF Links
+  logo: /images/sections/applications/aflink.png
+  author: github/dadatuputi
+  repo: https://github.com/dadatuputi/aflinks
+  url: "https://aflink.us/"
+  summary: A collection of helpful direct links to AF resources. (Not confirmed accessible from NIPR).
+  tags: ["Other", "External-Site"]
+
+- name: Air Force Hub
+  logo: /images/sections/applications/AFHub.png
+  author: github/geek2009
+  url: "https://airforcehub.com/"
+  summary: A collection of open source AF related applications, similar to this site but with cooler graphics.
+  tags: ["Other", "External-Site"]
