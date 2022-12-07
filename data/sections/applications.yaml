@@ -65,7 +65,15 @@ projects:
   author: github/cmdr0
   repo: https://github.com/cmdr0/bulletpress
   url: "./BulletPress"
-  summary: A minimalist bullet writing tool for optimizing the wording of a single bullet.
+  summary: A minimalist bullet writing tool for optimizing the wording of a single bullet using a slick bullet markup syntax.
+  tags: ["Bullet Writing", "In-Browser"]
+
+- name: Bullet Press 2
+  logo: /images/sections/applications/BulletPress2.png
+  author: github/codejedi365
+  repo: https://github.com/codejedi365/bulletpress
+  url: "./BulletPress2/public"
+  summary: A fork and update of the original Bullet Press tool.
   tags: ["Bullet Writing", "In-Browser"]
 
 - name: Air Force Fitness Calculator

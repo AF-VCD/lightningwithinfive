@@ -24,3 +24,6 @@
 [submodule "content/bullet-buddy"]
 	path = content/bullet-buddy
 	url = https://github.com/AF-Tools/bullet-buddy
+[submodule "content/BulletPress2"]
+	path = content/BulletPress2
+	url = https://github.com/codejedi365/bulletpress
