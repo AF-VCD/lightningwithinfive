@@ -17,6 +17,8 @@ buttons:
   filter: "Bullet Writing"
 - name: Narrative
   filter: "Narrative Writing"
+- name: New
+  filter: "New"
 - name: Other
   filter: "Other"
 
@@ -82,7 +84,7 @@ projects:
   repo: https://github.com/codejedi365/bulletpress
   url: "./BulletPress2/public"
   summary: A fork and update of the original Bullet Press tool.
-  tags: ["Bullet Writing", "In-Browser"]
+  tags: ["Bullet Writing", "In-Browser", "New"]
 
 - name: Air Force Fitness Calculator
   logo: /images/sections/applications/airforcefitnesscalculator.png
