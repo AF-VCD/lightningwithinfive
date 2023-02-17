@@ -13,6 +13,11 @@ Green:   #2DCA73
 Yellow:  #FFC212
 */
 
+.new-item {
+  color:rgb(255, 0, 0);
+  float: right;
+}
+
 body {
   background-color: #f9fafc;
   font-family: "Muli";
