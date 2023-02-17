@@ -13,13 +13,21 @@ section:
 buttons:
 - name: All
   filter: "all"
-- name: Bullet-Writing
+- name: Bullets
   filter: "Bullet Writing"
+- name: Narrative
+  filter: "Narrative Writing"
 - name: Other
   filter: "Other"
 
 # your projects
 projects:
+- name: Narrative Buddy
+  logo: /images/sections/applications/NarrativeBuddy.png
+  url: "https://narrative-buddy.com"
+  summary: The ChatGPT backed narrative writing tool that we've all been waiting for.
+  tags: ["External-Site", "Narrative Writing"]
+
 - name: Air Force Bullet Shaping & iteration tool (AF Bullshit)
   logo: /images/sections/applications/AFBS.png
   author: u/ckhordiasma
