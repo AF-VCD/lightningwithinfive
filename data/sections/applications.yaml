@@ -26,7 +26,7 @@ projects:
   logo: /images/sections/applications/NarrativeBuddy.png
   url: "https://narrative-buddy.com"
   summary: The ChatGPT backed narrative writing tool that we've all been waiting for.
-  tags: ["External-Site", "Narrative Writing"]
+  tags: ["External-Site", "Narrative Writing", "New"]
 
 - name: Air Force Bullet Shaping & iteration tool (AF Bullshit)
   logo: /images/sections/applications/AFBS.png

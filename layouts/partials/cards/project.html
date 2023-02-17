@@ -6,6 +6,11 @@
     <div class="card">
       <a class="card-header" href="{{ site.Params.BaseURL }}{{ if .url }}{{ .url }}{{ else if .repo }}{{ .repo }}{{ else }}javascript:void(0){{ end }}" {{ if or .repo .url }}target="_blank" rel="noopener"{{ end }}>
         <div>
+          {{ if in .tags "New" }}
+          <div class="d-flex new-item">
+            <h5 class="card-title mb-0 new-item">NEW</h5>
+          </div>
+          {{ end }}
           <div class="d-flex">
             <h5 class="card-title mb-0">{{ .name }}</h5>
           </div>
@@ -31,9 +36,11 @@
           {{ if .tags }}
             <div class="project-tags-holder">
               {{ range $index,$tag:= .tags }}
+                  {{ if ne $tag "New" }}
                   <span class="badge btn-info">
                     {{ $tag }}
                   </span>
+                  {{ end }}
               {{ end }}
             </div>
           {{ end }}
